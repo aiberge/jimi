@@ -1,0 +1,14 @@
+'use client'
+
+import React from 'react'
+import dynamic from 'next/dynamic'
+import { useForm } from 'react-hook-form'
+import { Button } from "@/components/ui/button"
+import { Car } from '@/types'
+import 'react-phone-input-2/lib/style.css'
+
+// Next.js dynamic import type conflict with react-phone-input-2 component
+const PhoneInput = dynamic(() => import('react-phone-input-2'), {
+  ssr: false,
+  loading: () => <div className="mt-1 block w-full h-[38px] rounded-md border-gray-300 shadow-sm animate-pulse bg-gray-100" />
+})
