@@ -4,16 +4,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { 
-  Shield, 
-  Users, 
-  Sparkles, 
-  Check, 
-  Phone, 
   Mail, 
-  Globe, 
-  ChevronDown, 
+  Phone, 
   Menu, 
   X, 
+  Globe, 
+  Check, 
+  ChevronDown, 
   Clock, 
   UserCheck, 
   MapPin,
@@ -1190,11 +1187,7 @@ const FloatingContactButtons = () => {
   )
 }
 
-const AboutPage = ({ onPageChange, currentPage, language }: { 
-  onPageChange: (page: string) => void,
-  currentPage: string,
-  language: Language,
-}) => {
+const AboutPage = ({ language }: { language: Language }) => {
   const t = translations[language]
 
   return (
@@ -1208,7 +1201,7 @@ const AboutPage = ({ onPageChange, currentPage, language }: {
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
             >
-              {t.about.title} <span className="text-primary italic">{t.about.highlight}</span>
+              {t.about.title} <span className="text-primary">{t.about.subtitle}</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -1224,171 +1217,42 @@ const AboutPage = ({ onPageChange, currentPage, language }: {
 
       {/* Main Content */}
       <div className="container mx-auto px-4">
-        {/* Notre Histoire Section */}
-        <div className="mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Notre Histoire</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Depuis notre création, Jimi Car s&apos;est engagé à fournir des services de location de voitures 
-              exceptionnels au Maroc. Notre passion pour l&apos;automobile et notre engagement envers la satisfaction 
-              client nous ont permis de devenir l&apos;un des leaders du marché de la location de voitures au Maroc.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Values Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <Shield className="w-8 h-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Fiabilité</h3>
-            <p className="text-gray-600">
-              Notre flotte de véhicules est régulièrement entretenue et inspectée pour garantir 
-              votre sécurité et votre confort. Nous nous engageons à fournir des véhicules propres, 
-              bien entretenus et en parfait état de fonctionnement.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <Users className="w-8 h-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Service Client</h3>
-            <p className="text-gray-600">
-              Notre équipe dévouée est disponible 24/7 pour répondre à vos besoins. Nous offrons 
-              un service personnalisé et professionnel, de la réservation à la restitution du véhicule, 
-              en passant par l&apos;assistance routière.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Transparence</h3>
-            <p className="text-gray-600">
-              Nous croyons en une tarification claire et transparente. Pas de frais cachés, 
-              pas de surprises. Nos contrats sont clairs et nos prix sont compétitifs, avec 
-              des options d&apos;assurance complètes pour votre tranquillité d&apos;esprit.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Services Section */}
-        <div className="mb-20">
-          <div className="max-w-4xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="grid md:grid-cols-2 gap-12 items-center"
-            >
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Nos Services</h2>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <Check className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Location Flexible</h4>
-                      <p className="text-gray-600">Location à court et long terme adaptée à vos besoins</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <Check className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Service Aéroport</h4>
-                      <p className="text-gray-600">Livraison et récupération dans tous les aéroports majeurs du Maroc</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <Check className="w-4 h-4 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Assistance 24/7</h4>
-                      <p className="text-gray-600">Support technique et assistance routière disponibles à tout moment</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-                className="relative h-[400px] rounded-xl overflow-hidden shadow-xl"
-              >
-                <Image
-                  src="/apr.jpg"
-                  alt="Nos Services"
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Contact CTA Section */}
+        {/* Contact Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl mx-auto text-center bg-gradient-to-r from-primary/10 to-primary/5 p-12 rounded-2xl"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Prêt à Prendre la Route ?</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Contactez-nous dès maintenant pour réserver votre véhicule ou obtenir plus d&apos;informations 
-            sur nos services de location.
-          </p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">{t.about.contact.title}</h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a 
-              href="tel:+212664691080"
+              href={`tel:${t.about.contact.phone}`}
               className="flex items-center space-x-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
             >
               <Phone className="w-5 h-5" />
-              <span>+212 664-691080</span>
+              <span>{t.about.contact.phone}</span>
             </a>
             <a 
-              href="mailto:contact@jimicar.ma"
+              href={`mailto:${t.about.contact.email}`}
               className="flex items-center space-x-2 px-6 py-3 bg-white text-primary rounded-lg hover:bg-gray-50 transition-colors"
             >
               <Mail className="w-5 h-5" />
-              <span>contact@jimicar.ma</span>
+              <span>{t.about.contact.email}</span>
             </a>
           </div>
         </motion.div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const MaqdisCarWebsite = () => {
   const [currentPage, setCurrentPage] = useState('home')
-  const [language, setLanguage] = useState<Language>('fr')
+  const { currentLanguage: language } = useLanguageSwitch()
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page)
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -1412,7 +1276,7 @@ const MaqdisCarWebsite = () => {
           </main>
         </>
       ) : (
-        <AboutPage onPageChange={handlePageChange} currentPage={currentPage} language={language} />
+        <AboutPage language={language} />
       )}
       
       <Footer />

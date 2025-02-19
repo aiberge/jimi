@@ -100,21 +100,6 @@ export default function ReservationForm({ car, onClose }: ReservationFormProps) 
     onClose();
   };
 
-  const sendWhatsAppMessage = (formData: FormData) => {
-    const message = `*New Reservation Request*\n
-🚗 Car: ${car.name}\n
-📅 From: ${formData.startDate}\n
-📅 To: ${formData.endDate}\n
-👤 Name: ${formData.name}\n
-📱 Phone: ${formData.phone}\n
-📧 Email: ${formData.email}\n
-📝 Additional Notes: ${formData.additionalNotes || 'None'}\n
-🏢 Company: Jimi Car`;
-
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/212664691080?text=${encodedMessage}`, '_blank');
-  };
-
   return (
     <div className="w-full max-h-[80vh] overflow-y-auto">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
