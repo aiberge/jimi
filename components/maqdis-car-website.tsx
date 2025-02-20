@@ -388,8 +388,11 @@ const FilterSection = ({ onFilterChange, selectedType, cars }: {
   selectedType: string,
   cars: Car[]
 }) => {
-  // Get unique car types from the data
-  const carTypes = ['all', ...new Set(cars.map(car => car.type))]
+  // Get unique car types using filter
+  const uniqueTypes = cars
+    .map(car => car.type)
+    .filter((type, index, array) => array.indexOf(type) === index);
+  const carTypes = ['all'].concat(uniqueTypes);
   
   return (
     <div className="container mx-auto px-4 mb-12">
