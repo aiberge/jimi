@@ -71,7 +71,7 @@ const cars: Car[] = [
     version: 'Base',
     type: 'Économique',
     price: 250,
-    image: '/strt.jpg',
+    image: '/strtt.jpg',
     featured: false,
     transmission: 'Manuelle',
     seats: 5,
@@ -383,37 +383,48 @@ const CarCard = ({ car }: { car: Car }) => {
   );
 };
 
-const FilterSection = ({ onFilterChange }: { onFilterChange: (type: string, value: string) => void }) => {
-  const [selectedFilter, setSelectedFilter] = useState('all')
-
-  const handleFilterClick = (value: string) => {
-    setSelectedFilter(value)
-    onFilterChange('type', value)
-  }
-
+const FilterSection = ({ onFilterChange, selectedType, cars }: { 
+  onFilterChange: (type: string, value: string) => void,
+  selectedType: string,
+  cars: Car[]
+}) => {
+  // Get unique car types from the data
+  const carTypes = ['all', ...new Set(cars.map(car => car.type))]
+  
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex flex-wrap justify-center gap-4"
-    >
-      {['all', 'Économique', 'Berline'].map((filter) => (
-        <motion.button
-          key={filter}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => handleFilterClick(filter)}
-          className={`px-6 py-2 rounded-full transition-colors ${
-            selectedFilter === filter
-              ? 'bg-primary text-white'
-              : 'bg-white text-gray-700 hover:bg-gray-100'
-          } shadow-md`}
-        >
-          {filter === 'all' ? 'Tous' : filter}
-        </motion.button>
-      ))}
-    </motion.div>
+    <div className="container mx-auto px-4 mb-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white rounded-2xl shadow-lg p-8"
+      >
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Notre Flotte</h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          {carTypes.map((type) => (
+            <motion.button
+              key={type}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => onFilterChange('type', type)}
+              className={`px-6 py-3 rounded-lg transition-all duration-200 font-medium ${
+                selectedType === type
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:shadow'
+              }`}
+            >
+              {type === 'all' ? 'Tous les Véhicules' : type}
+            </motion.button>
+          ))}
+        </div>
+        <div className="mt-6 text-center text-gray-500">
+          {selectedType === 'all' 
+            ? `${cars.length} véhicules disponibles`
+            : `${cars.filter(car => car.type === selectedType).length} véhicules de type ${selectedType}`
+          }
+        </div>
+      </motion.div>
+    </div>
   )
 }
 
@@ -1216,11 +1227,73 @@ const AboutPage = ({ language }: { language: Language }) => {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4">
-        {/* Contact Section */}
-        <motion.div 
+      <div className="container mx-auto px-4 space-y-24 mb-24">
+        {/* Mission & Values Section */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid md:grid-cols-2 gap-12 items-center"
+        >
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-gray-900">{t.about.mission.title}</h2>
+            <p className="text-gray-600 leading-relaxed">{t.about.mission.description}</p>
+            <div className="grid grid-cols-2 gap-6">
+              {t.about.values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-4 bg-white rounded-lg shadow-sm border border-gray-100"
+                >
+                  <h3 className="font-semibold text-primary mb-2">{value.title}</h3>
+                  <p className="text-sm text-gray-600">{value.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <div className="relative h-[400px] rounded-2xl overflow-hidden">
+            <Image
+              src="/hero.webp"
+              alt="Notre Mission"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </motion.section>
+
+        {/* Statistics Section */}
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-12"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {t.about.stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Contact Section */}
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center bg-gradient-to-r from-primary/10 to-primary/5 p-12 rounded-2xl"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-6">{t.about.contact.title}</h2>
@@ -1240,7 +1313,7 @@ const AboutPage = ({ language }: { language: Language }) => {
               <span>{t.about.contact.email}</span>
             </a>
           </div>
-        </motion.div>
+        </motion.section>
       </div>
     </div>
   )
@@ -1249,10 +1322,21 @@ const AboutPage = ({ language }: { language: Language }) => {
 const MaqdisCarWebsite = () => {
   const [currentPage, setCurrentPage] = useState('home')
   const { currentLanguage: language } = useLanguageSwitch()
+  const [selectedType, setSelectedType] = useState('all')
+  const [filteredCars, setFilteredCars] = useState(cars)
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page)
     window.scrollTo(0, 0)
+  }
+
+  const handleFilterChange = (type: string, value: string) => {
+    setSelectedType(value)
+    if (value === 'all') {
+      setFilteredCars(cars)
+    } else {
+      setFilteredCars(cars.filter(car => car.type === value))
+    }
   }
 
   return (
@@ -1263,14 +1347,34 @@ const MaqdisCarWebsite = () => {
         <>
           <HeroSection onPageChange={handlePageChange} currentPage={currentPage} language={language} />
           <main>
-            <FilterSection onFilterChange={() => {}} />
-            <div className="container mx-auto px-4 py-16">
+            <FilterSection 
+              onFilterChange={handleFilterChange} 
+              selectedType={selectedType}
+              cars={cars}
+            />
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="container mx-auto px-4 py-16"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {cars.map((car) => (
-                  <CarCard key={car.id} car={car} />
-                ))}
+                <AnimatePresence mode="popLayout">
+                  {filteredCars.map((car) => (
+                    <motion.div
+                      key={car.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <CarCard car={car} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
-            </div>
+            </motion.div>
             <AirportShuttleSection language={language} />
             <LocationSection language={language} />
           </main>
