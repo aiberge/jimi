@@ -34,9 +34,9 @@ interface FormData {
 }
 
 const locations = [
-  { code: 'AGA', name: 'Agadir–Al Massira Airport - Agadir' },
-  { code: 'CAG', name: 'Agadir-centre ville - Agadir' },
-  { code: 'TIZ', name: 'Tiznit-centre ville - Tiznit' },
+  { code: 'FEZ', name: 'Fès–Saïs Airport - Fès' },
+  { code: 'FES', name: 'Fès-centre ville - Fès' },
+  { code: 'TIZ', name: 'Fes-centre ville - fes' },
   { code: 'Autre', name: 'Autre' },
 ];
 

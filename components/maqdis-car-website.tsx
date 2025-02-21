@@ -204,9 +204,9 @@ const cars: Car[] = [
 ];
 
 const airports = [
-  { code: 'AGA', name: 'Agadir–Al Massira Airport - Agadir' },
-  { code: 'CAG', name: 'Agadir-centre ville - Agadir' },
-  { code: 'TIZ', name: 'Tiznit-centre ville - Tiznit' },
+  { code: 'FEZ', name: 'Fès–Saïs Airport - Fès' },
+  { code: 'FES', name: 'Fès-centre ville - Fès' },
+  { code: 'TIZ', name: 'Fes-centre ville - Fès' },
 ]
 
 const CarCard = ({ car }: { car: Car }) => {
@@ -499,7 +499,7 @@ const AirportShuttleSection = ({ language }: { language: Language }) => {
             className="relative h-[400px] rounded-2xl overflow-hidden"
           >
             <Image
-              src="/airop.webp"
+              src="/air.jpg"
               alt="Airport Shuttle Service"
               fill
               className="object-cover"
