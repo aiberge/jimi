@@ -635,7 +635,7 @@ const Navigation = ({ onPageChange, currentPage }: {
               isScrolled ? 'w-24 h-24 md:w-28 md:h-28' : 'w-40 h-40 md:w-52 md:h-52'
             }`}>
               <Image
-                src="/Jimi.png"
+                src="/jimi.png"
                 alt="jimi Car Logo"
                 fill
                 className="object-contain"
