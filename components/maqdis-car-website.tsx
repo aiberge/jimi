@@ -636,7 +636,7 @@ const Navigation = ({ onPageChange, currentPage }: {
             }`}>
               <Image
                 src="/Jimi.png"
-                alt="Jimi Car Logo"
+                alt="jimi Car Logo"
                 fill
                 className="object-contain"
                 priority
@@ -1102,7 +1102,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3">
               <div className="relative w-12 h-12">
                 <Image
-                  src="/Jimi.png"
+                  src="/jimi.png"
                   alt="Jimi Car Logo"
                   fill
                   className="object-contain"
