@@ -200,7 +200,41 @@ const cars: Car[] = [
     maxSpeed: 170,
     trunkSize: 827,
     colors: ['noir']
-  }
+  },
+  {
+    id: 10,
+    name: 'Volkswagen Touareg',
+    version: 'V6 TDI',
+    type: 'SUV',
+    price: 1200,
+    image: '/w.jpeg',
+    featured: true,
+    transmission: 'Automatique',
+    seats: 5,
+    luggage: 4,
+    airConditioning: true,
+    fuel: 'diesel',
+    maxSpeed: 235,
+    trunkSize: 810,
+    colors: ['noir', 'argent', 'blanc']
+  },
+  {
+    id: 11,
+    name: 'Hyundai Tucson',
+    version: 'CRDi',
+    type: 'SUV',
+    price: 800,
+    image: '/tucson.jpeg',
+    featured: false,
+    transmission: 'Automatique',
+    seats: 5,
+    luggage: 3,
+    airConditioning: true,
+    fuel: 'diesel',
+    maxSpeed: 201,
+    trunkSize: 620,
+    colors: ['gris', 'blanc', 'bleu']
+  },
 ];
 
 const airports = [
